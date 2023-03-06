@@ -1,0 +1,6 @@
+pytest==6.2.5
+nox==2022.11.21
+cookiecutter>=1.4.0
+pytest-cookies==0.6.1
+alabaster==0.7.12
+watchdog==0.9.0
