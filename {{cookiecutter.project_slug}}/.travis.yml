@@ -18,6 +18,6 @@ deploy:
         secure: PLEASE_REPLACE_ME
     on:
         tags: true
-        repo: apj-graham/Python-Project-Template
+        repo: apj-graham/{{cookiecutter.project_slug}}
 
         python: 3.10

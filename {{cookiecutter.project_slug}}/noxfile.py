@@ -14,7 +14,7 @@ def coverage(session):
     session.install("-r", "requirements_dev.txt")
     session.install("-r", "requirements.txt")
     session.install(".")
-    session.run("pytest", "-cov=CookieCutter", "tests/")
+    session.run("pytest", "-cov={{cookiecutter.project_slug}}", "tests/")
 
 
 @nox.session
@@ -34,24 +34,13 @@ def benchmark(session):
 
 
 @nox.session
-def bandit(session):
-    session.install("-r", "requirements_dev.txt")
-    session.install("-r", "requirements.txt")
-    session.install(".")
-    session.run("bandit", "CookieCutter/*")
-
-
-@nox.session
 def auto_format(session):
     session.install("black")
     session.install("isort")
-    session.install("pylint")
+    session.install("ruff")
 
-    session.run("black", "CookieCutter")
-    session.run("black", "tests")
+    session.run("black", ".")
 
-    session.run("isort", "--atomic", "CookieCutter/.")
-    session.run("isort", "--atomic", "tests/.")
+    session.run("isort", "--atomic", ".")
 
-    session.run("pylint", "CookieCutter")
-    session.run("pylint", "tests")
+    session.run("ruff", "check", "--fix", ".")
